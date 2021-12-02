@@ -61,14 +61,14 @@ add_action('wp_ajax_poster_generate', 'poster_generate');
 add_action('wp_ajax_nopriv_poster_generate', 'poster_generate');
 
 function poster_main($title,$text){
-    $img_top = 'http://test.teifan.com/poster/1.png';
-    $img_bottom = 'http://test.teifan.com/poster/2.png';
+    $img_top = 'http://poster.ohoyo.cn/poster/1.png';
+    $img_bottom = 'http://poster.ohoyo.cn/poster/2.png';
     $length = 40;
     $count = ceil((strlen($text)+mb_strlen($text, 'UTF-8'))/2/$length);
     $height = 1250 + $count * 70;
-    $background = 'http://test.teifan.com/poster/baidi.png?imageMogr2/thumbnail/1125x'.$height.'!|';
+    $background = 'http://poster.ohoyo.cn/poster/baidi.png?imageMogr2/thumbnail/1125x'.$height.'!|';
     $url = $background.'watermark/3/image/'. base64_urlSafeEncode($img_top) .'/gravity/North/dy/0/dx/0';
-    $url .= '/image/' .base64_urlSafeEncode('http://test.teifan.com/logo.png') . '/gravity/NorthWest/dx/20/dy/150/ws/0.3';
+    $url .= '/image/' .base64_urlSafeEncode('http://poster.ohoyo.cn/logo.png') . '/gravity/NorthWest/dx/20/dy/150/ws/0.3';
     for ($i=0; $i < $count; $i++) {
         $url .= '/text/'.  base64_urlSafeEncode(mb_strimwidth($text,$i*$length/2,$length)) . '/gravity/NorthWest/fontsize/1000/dx/65/dy/'.(480+$i*70);
     }

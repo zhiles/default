@@ -69,14 +69,14 @@ function get_thumbnail_url()
         $preg = '/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*?>/i';
         preg_match($preg, $post->post_content, $imgArr);
         if (count($imgArr) != 0) {
-            $thumbnail = $imgArr[1];
-            //$thumbnail = $img['dirname'] . $img['filename'] .'-210x140.'.$img['extension'];
+            $img = pathinfo($imgArr[1]);
+            $thumbnail = $img['dirname'] .'/'. $img['filename'] .'-210x140.'.$img['extension'];
         }
     }
     if ($thumbnail == null || $thumbnail == "") {
-        $thumbnail = "https://ohoyo-1301859796.cos.ap-beijing.myqcloud.com/2021/11/9e19c7303b0cfc8dab5a404087c7f749.jpg";
+        $thumbnail = "https://ohoyo-1301859796.cos.ap-beijing.myqcloud.com/2021/11/9e19c7303b0cfc8dab5a404087c7f749.jpg!thumbnail";
     }
-    return $thumbnail . '!thumbnail';
+    return $thumbnail;
 }
 
 /**获取摘要显示 */

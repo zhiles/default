@@ -13,7 +13,7 @@
     <main class="main">
         <div style="width:100%;height:100%;">
             <div class="list-title">
-                <h3>关于</h3>
+                <h3>关于我门</h3>
             </div>
             <div class="about">
                 <p>新漫热刊</p>

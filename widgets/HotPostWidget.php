@@ -13,20 +13,17 @@ class HotPostWidget extends WP_Widget{
     }
     function widget($args,$instance){
     //这是控制小工具前台显示的函数
-        $most_views = new WP_Query(array('order' => 'DESC', 'orderby' => 'meta_value_num', 'meta_key'=>'_views','posts_per_page' => 5));
+        $posts = new WP_Query(array('order' => 'DESC', 'orderby' => 'meta_value_num', 'meta_key'=>'_views','posts_per_page' => 5));
         $output = "";
         $i = 0;
-        while ($most_views -> have_posts()){
+        while ($posts -> have_posts()){
             $i++;
-            $most_views -> the_post();
+            $posts -> the_post();
             $title = get_the_title();
             $url = get_the_permalink();
-            $category = get_the_category();
-            $time = get_the_time('Y-m-d');
             $output .= '<div class="widget-item">';
-            $output .= '<div><span class="widget-item-num">'.$i.'</span>';
-            $output .= '<span class="widget-item-title"><a href="'.$url.'" class="webkit-1">'.$title.'</a></span></div>';
-            $output .= '<div class="widget-item-meta"><div>'.$time.'</div><a href="'.get_category_link($category[0]->cat_ID).'">'.$category[0]->name.'</a></div>';
+            $output .= '<span class="widget-item-num">'.$i.'</span>';
+            $output .= '<span class="widget-item-title"><a href="'.$url.'" class="webkit-1">'.$title.'</a></span>';
             $output .= '</div>';
         }
         $html = '<div class="sidebar-aside-box">';

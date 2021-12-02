@@ -85,7 +85,7 @@ register_nav_menus( array( 'menu_top' => '头部导航', 'menu_bottom' => '底�
 //add_filter( 'jpeg_quality', create_function( '', 'return 80;' ) );
 // 禁用自动生成的图片尺寸
 function shapeSpace_disable_image_sizes($sizes) {
-    unset($sizes['thumbnail']);    // disable thumbnail size
+    //unset($sizes['thumbnail']);    // disable thumbnail size
     unset($sizes['medium']);       // disable medium size
     unset($sizes['large']);        // disable large size
     unset($sizes['medium_large']); // disable medium-large size
@@ -195,13 +195,4 @@ function fanly_no_autosave(){
 //禁用文章修订版本
 add_filter( 'wp_revisions_to_keep', 'fanly_wp_revisions_to_keep', 10, 2 );
 function fanly_wp_revisions_to_keep( $num, $post ) { return 0;}
-
-
-add_filter('json_enabled', '__return_false' );
-add_filter('json_jsonp_enabled', '__return_false' );
-add_filter('rest_enabled', '__return_false');
-add_filter('rest_jsonp_enabled', '__return_false');
-//移除无用的head头
-remove_action('wp_head', 'rest_output_link_wp_head', 10 );
-remove_action('template_redirect', 'rest_output_link_header', 11 );
 ?>

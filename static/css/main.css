@@ -1606,7 +1606,7 @@ figure figcaption{
     outline: none;
     cursor: pointer;
 }
-.am
+
 @media screen and (max-width: 800px) {
      ::-webkit-scrollbar {
         width: 4px!important;
