@@ -31,6 +31,6 @@ class TagWidget extends WP_Widget{
 function Tag_Widget(){
     register_widget('TagWidget');
 }
-//widges_init，小工具初始化的时候执行PostWidget函数
+//widget_init，小工具初始化的时候执行PostWidget函数
 add_action('widgets_init','Tag_Widget');
 ?>

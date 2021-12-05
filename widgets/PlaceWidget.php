@@ -16,7 +16,7 @@ class PlaceWidget extends WP_Widget{
         $html = '<div class="sidebar-aside-box">';
         $html .= '<h2 class="widget-title">归档</h2>';
         $html .= '<ul class="widget-menu">';
-        $html .= wp_get_archives(array('echo'=>false));
+        $html .= wp_get_archives(array('echo'=>false,'limit'=>6));
         $html .= '</ul>';
         $html .= '</div>';
         echo $html;
@@ -25,6 +25,6 @@ class PlaceWidget extends WP_Widget{
 function Place_Widget(){
     register_widget('PlaceWidget');
 }
-//widges_init，小工具初始化的时候执行PostWidget函数
+//widget_init，小工具初始化的时候执行PostWidget函数
 add_action('widgets_init','Place_Widget');
 ?>

@@ -36,6 +36,6 @@ class HotPostWidget extends WP_Widget{
 function Hot_Post_Widget(){
     register_widget('HotPostWidget');
 }
-//widges_init，小工具初始化的时候执行PostWidget函数
+//widget_init，小工具初始化的时候执行PostWidget函数
 add_action('widgets_init','Hot_Post_Widget');
 ?>

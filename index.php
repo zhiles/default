@@ -5,34 +5,21 @@
 </head>
 <body>
     <?php get_template_part('component/nav-header')?>
-    <?php
-        $setting = get_option('theme_default_setting');
-        $obj = json_decode($setting,true);
-        $swiper = '';
-        if(!empty($obj)){
-            $swiper = $obj['default_swiper'];
-            if(!empty($obj['default_sticky'])){
-                $sticky = new WP_Query(array(
-                    'post_type'=> array('post'),
-                    'post__in'=> explode(',',$obj['default_sticky']),
-                    'post_status' => array('publish'),
-                    'posts_per_page'=> -1
-                ));
-            }
-        }
-    ?>
     <main class="main">
         <div class="main-left">
-        <?php if(!empty($swiper)):?>
+        <?php
+            $swiper = get_option('wb_default_swiper');
+            if(!empty($swiper)):
+        ?>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <?php
-                        $swiper = explode("&&", $swiper);
+                        $swiper = explode("\r\n", $swiper);
                         foreach($swiper as $swiper):
                             $arr = explode('||', $swiper);
                     ?>
                     <div class="swiper-slide">
-                        <a href="<?php echo $arr[2];?>" title="<?php echo $arr[1];?>" target="_blank">
+                        <a href="<?php echo $arr[2];?>" title="<?php echo $arr[1];?>" rel="nofollow" target="_blank">
                             <img src="<?php echo $arr[0];?>" alt="<?php echo $arr[1];?>">
                         </a>
                     </div>
@@ -45,7 +32,14 @@
         <?php endif;?>
             <div class="main-topping">
                 <?php
+                    $sticky = get_option('wb_default_sticky');
                     if(!empty($sticky)):
+                    $sticky = new WP_Query(array(
+                        'post_type'=> array('post'),
+                        'post__in'=> explode(',',$sticky),
+                        'post_status' => array('publish'),
+                        'posts_per_page'=> -1
+                    ));
                     while ($sticky->have_posts()):
                     $sticky -> the_post();
                 ?>

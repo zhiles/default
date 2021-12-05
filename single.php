@@ -108,10 +108,7 @@
                             <!-- 上下篇幅 -->
                             <div class="view-turn">
                                 <?php
-                                    $obj = get_previous_post();
-                                    $prev['title'] = get_the_title($obj);
-                                    $prev['thumbnail'] = get_thumbnail_url();
-                                    $prev['url'] = get_the_permalink($obj);
+                                    $prev = get_object_info(get_previous_post());
                                 ?>
                                 <div class="view-turn-item view-turn-prev" style="background-image:url(<?php echo $prev['thumbnail']; ?>)">
                                     <div class="view-turn-main">
@@ -120,10 +117,7 @@
                                     </div>
                                 </div>
                                 <?php
-                                    $obj = get_next_post();
-                                    $next['title'] = get_the_title($obj);
-                                    $next['thumbnail'] = get_thumbnail_url();
-                                    $next['url'] = get_the_permalink($obj);
+                                    $next = get_object_info(get_next_post());
                                 ?>
                                 <div class="view-turn-item view-turn-next" style="background-image:url(<?php echo $next['thumbnail']; ?>)">
                                     <div class="view-turn-main">

@@ -59,9 +59,8 @@ function get_relevant($id)
 }
 
 /**获取缩略图 */
-function get_thumbnail_url()
+function get_thumbnail_url($post): string
 {
-    global $post;
     $thumbnail = null;
     if (has_post_thumbnail($post)) {
         $thumbnail = get_the_post_thumbnail_url($post,'thumbnail');
@@ -79,8 +78,16 @@ function get_thumbnail_url()
     return $thumbnail;
 }
 
+function get_object_info($obj): array
+{
+    $that['title'] = get_the_title($obj);
+    $that['thumbnail'] = get_thumbnail_url($obj);
+    $that['url'] = get_the_permalink($obj);
+    return $that;
+}
+
 /**获取摘要显示 */
-function get_excerpt()
+function get_excerpt(): string
 {
     global $post;
     if (has_excerpt($post->ID)) {

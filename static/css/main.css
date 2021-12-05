@@ -948,6 +948,7 @@ figure figcaption{
 
 .view-content-body img{
     height: 100%;
+    border-radius: .2rem;
 }
 .view-content-body .tags{
     font-weight: 300;
@@ -1535,7 +1536,7 @@ figure figcaption{
 .large .main-right {
     display: none;
 }
-.about{
+.about,.time{
     background: var(--bgColor);
     width: 100%;
     border-bottom-left-radius: .25em;
@@ -1607,6 +1608,80 @@ figure figcaption{
     cursor: pointer;
 }
 
+.time-main {
+    position: relative;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.time-main:before {
+    content: "";
+    width: 3px;
+    background-color: rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6rem;
+}
+.time-main h3{
+    border:0 !important;
+}
+h3.time-year {
+    display: inline-block;
+    background-color: #fafafa;
+    color: rgba(0, 0, 0, 0.44);
+    padding: 1px 0;
+    width: 6rem;
+    margin: 0 0 .8rem 3rem;
+    text-align: center;
+    border-radius: .8rem;
+    position: relative;
+}
+h3.time-year:not(:first-child){
+    margin-top: 1rem;
+}
+h3.time-month {
+    position: relative;
+    font-weight: 700;
+    padding:0;
+    font-size: 16px;
+    line-height: 25px;
+    color: #999;
+    margin: .5rem 0;
+}
+.time-month:before,
+.time-month:after {
+    position: absolute;
+    border-radius: 100%;
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    background-color: #eee;
+    left: 5.6rem;
+    top: .3rem;
+}
+.time-axis{
+    margin: .5rem 0 .5rem 6rem;
+    display: block;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.time-axis:before,
+.time-axis:after {
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    height: .6rem;
+    width: .6rem;
+    background-color: #eee;
+    left: -.2rem;
+    top: .3rem;
+}
+.time-month:hover:after,
+.time-axis:hover:after {
+    background-color: var(--main);
+}
+
 @media screen and (max-width: 800px) {
      ::-webkit-scrollbar {
         width: 4px!important;
@@ -1634,13 +1709,13 @@ figure figcaption{
         bottom: 0;
         left: 0;
         top: 0;
-        background: #206be7;
+        background: #ffffff;
         flex-direction: column;
         padding: 0;
     }
     .is-mobile .navbar-toggle {
         flex-direction: row-reverse;
-        padding:.5rem;
+        padding:.7rem;
     }
     .is-mobile .navbar-menu {
         flex-direction: column;
@@ -1662,11 +1737,11 @@ figure figcaption{
         font-size: 16px;
         width: 100%;
         display: block;
-        color: #fff;
-        border-bottom: 1px solid rgba(0, 0, 0, .05);
     }
     .is-mobile .navbar-start {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: -.5rem;
     }
     .is-mobile .navbar-end {
         padding: 1.25rem;
@@ -1680,7 +1755,7 @@ figure figcaption{
     }
     .is-mobile svg {
         font-size: 1.5rem;
-        color: #fff;
+        color: #000000;
     }
     .is-mobile .search {
         padding-left: .5rem;
@@ -1692,10 +1767,6 @@ figure figcaption{
         width: 95%;
         font-size: 1.25rem;
         color: #494b4d;
-    }
-    .navbar .current-menu-item>a,.navbar .current-post-parent>a {
-        color: #fff;
-        background: rgba(255, 255, 255, .1)
     }
     .navbar .current-menu-item:before,
     .navbar .current-post-parent:before,

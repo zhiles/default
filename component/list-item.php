@@ -1,6 +1,6 @@
 <div class="list-item">
     <a class="list-item-thumbnail" href="<?php the_permalink();?>" title="<?php the_title();?>">
-        <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" data-src="<?php echo get_thumbnail_url();?>" alt="<?php the_title();?>">
+        <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" data-src="<?php echo get_thumbnail_url($post);?>" alt="<?php the_title();?>">
     </a>
     <div class="list-item-body">
         <h2>
@@ -16,7 +16,7 @@
         </p>
         <div class="list-item-meta">
             <ul>
-                <li><time datetime="<?php echo get_post_time('c', false, $post); ?>" itemprop="datePublished"><?php echo diffBetweenTimeDay(get_the_time('Y-m-d')); ?></time></li>
+                <li><time datetime="<?php echo get_post_time('c', false, $post); ?>" itemprop="datePublished"><?php the_time('Y-m-d'); ?></time></li>
                 <li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zanxuanzhong"></use></svg><?php get_like();?></li>
                 <li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-redu"></use></svg><?php get_view();?></li>
             </ul>

@@ -9,16 +9,9 @@
             <div class="footer-container">
                 <div class="footer-left">
                     <div>
-                        <?php
-                            $setting = get_option('theme_default_setting');
-                            $obj = json_decode($setting,true);
-                            if(!empty($obj)):
-                            $word = $obj['default_word'];
-                        ?>
                         <div class="footer-aside-box">
-                            <?php echo $word;?>
+                            <?php echo get_option('wb_default_word');?>
                         </div>
-                        <?php endif;?>
                         <div class="menu-footer">
                             <?php 
                                 $default = array(
@@ -36,8 +29,7 @@
                             Copyright © <?php echo date('Y');?> Ohoyo.cn,All Rights Reserved.     
                         </div>
                         <?php
-                        if(!empty($obj)):
-                            $icp = $obj['default_icp'];
+                            $icp = get_option('wb_default_icp');
                             if(!empty($icp)):
                         ?>
                         <div class="footer-info">
@@ -48,7 +40,6 @@
                         </div>
                         <?php
                             endif;
-                        endif;
                         ?>
                     </div>
                 </div>
