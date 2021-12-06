@@ -80,9 +80,6 @@ p {
 figure{
     text-align: center;
 }
-figure figcaption{
-    background-color: #f7f9fa;
-}
 .icon {
     width: 1.2rem;
     height: 1.2rem;
@@ -447,19 +444,6 @@ figure figcaption{
 .list-item-body a {
     color: #333;
     transition: all .3s ease-out 0s;
-}
-
-.list-item-tag {
-    display: inline-block;
-    margin-top: 1px;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    color: #fff;
-    border-radius: 2px;
-    vertical-align: top;
-    background: var(--main);
-    padding: .15rem .5rem;
 }
 
 .list-item-content {
@@ -1536,7 +1520,7 @@ figure figcaption{
 .large .main-right {
     display: none;
 }
-.about,.time{
+.about,.time,.universal{
     background: var(--bgColor);
     width: 100%;
     border-bottom-left-radius: .25em;
@@ -1556,7 +1540,7 @@ figure figcaption{
 .anime .item{
     break-inside:avoid;
     box-sizing:border-box;
-    padding:.75rem;
+    padding:.5rem;
 }
 .anime .anime-body{
     position: relative;
@@ -1682,6 +1666,77 @@ h3.time-month {
     background-color: var(--main);
 }
 
+.rand{
+    column-count:4;
+    column-gap:0;
+    background: #fff;
+}
+.rand .item{
+    break-inside:avoid;
+    box-sizing:border-box;
+    padding:.5rem;
+}
+.rand .item img{
+    width:100%;
+    border-radius: .2rem;
+}
+.rand .item .title{
+    text-align:center;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.rand .item p{
+    margin-bottom:0;
+    text-align:center;
+    font-size:14px;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    height: 6rem;
+}
+.goto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:var(--main);
+}
+.goto .icon{
+    width: 5rem;
+    height: 5rem;
+}
+.universal img{
+    width: 100%;
+}
+.universal .h5{
+    display: none;
+}
+.universal .pc{
+    display: block;
+}
+.universal .have-rest{
+    width: 100%;
+    margin: .5rem auto;
+    text-align: center;
+    font-weight: 600;
+    color:#a0a8b0;
+}
+.universal .have-rest:before, .universal .have-rest:after{
+    content: "";
+    background: #ccd0d7;
+    width: 15%;
+    vertical-align: middle;
+    height: 1px;
+    display: inline-block;
+    margin: 0 1rem;
+}
 @media screen and (max-width: 800px) {
      ::-webkit-scrollbar {
         width: 4px!important;
@@ -1859,8 +1914,17 @@ h3.time-month {
     .model .download{
         bottom: .5rem;
     }
-    .anime{
+    .anime,.rand{
         column-count:2;
+    }
+    .universal{
+        padding: .5rem;
+    }
+    .universal .h5{
+        display: block;
+    }
+    .universal .pc{
+        display: none;
     }
 }
 

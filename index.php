@@ -31,31 +31,7 @@
             </div>
         <?php endif;?>
             <div class="main-topping">
-                <?php
-                    $sticky = get_option('wb_default_sticky');
-                    if(!empty($sticky)):
-                    $sticky = new WP_Query(array(
-                        'post_type'=> array('post'),
-                        'post__in'=> explode(',',$sticky),
-                        'post_status' => array('publish'),
-                        'posts_per_page'=> -1
-                    ));
-                    while ($sticky->have_posts()):
-                    $sticky -> the_post();
-                ?>
-                    <div class="main-topping-item">
-                        <div class="list-item-thumbnail">
-                            <a href="<?php the_permalink();?>" target="_blank" title="<?php the_title();?>">
-                                <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" data-src="<?php echo get_thumbnail_url();?>" alt="<?php the_title();?>">
-                            </a>
-                        </div>
-                        <div class="main-topping-item-title"><?php the_title();?></div>
-                    </div>
-                <?php
-                    endwhile;
-                    wp_reset_postdata();
-                    endif;
-                ?>
+                <?php the_list_sticky_post(); ?>
             </div>
             <?php
                 while(have_posts()){

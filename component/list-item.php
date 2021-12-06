@@ -4,11 +4,6 @@
     </a>
     <div class="list-item-body">
         <h2>
-            <?php
-                if (is_sticky(get_the_ID())) {
-                    echo '<span class="list-item-tag">置顶</span>';
-                }
-            ?>
             <a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?></a>
         </h2>
         <p class="list-item-content">
@@ -21,7 +16,7 @@
                 <li><svg class="icon" aria-hidden="true"><use xlink:href="#icon-redu"></use></svg><?php get_view();?></li>
             </ul>
             <div class="list-item-meta-other">
-                <?php $category = getCategory(get_the_ID())?>
+                <?php $category = get_the_category_(get_the_ID())?>
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-yingyong"></use>
                 </svg>

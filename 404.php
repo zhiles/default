@@ -5,21 +5,23 @@
 </head>
 <body>
     <?php get_template_part('component/nav-header')?>
-    <main>
-        <div class="main">
-        <div class="main-left" role="main">
-            <div class="in-404">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-152error40401"></use>
-                </svg>
-                <span>页面穿越到异次元~</span>
-                <a href="/">点击前往异次元世界~</a>
+    <main class="main">
+            <div class="universal">
+                <img class="pc" src="<?php introduce('very_sorry.png','img')?>" alt="404">
+                <img class="h5" src="<?php introduce('error.png','img')?>" alt="404">
+                <a href="/" class="goto">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-heidong"></use>
+                    </svg>
+                    <p>Σ(oﾟдﾟoﾉ) 无法找到该页面~~</p>
+                </a>
+<!--                <img class="pc" src="--><?php //introduce('have_rest.png','img')?><!--" alt="">-->
+                <div class="have-rest">休息一下，看看推荐~</div>
+                <div class="rand">
+                    <?php the_rand_post();?>
+                </div>
             </div>
-        </div>
-        <div class="main-right">
-            <?php get_sidebar();?>
-        </div>
-        </main>
+    </main>
     <?php get_footer();?>
 </body>
 </html>

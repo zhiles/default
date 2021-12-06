@@ -27,7 +27,7 @@
                                             <?php echo get_the_time('Y-m-d H:i:s'); ?>
                                         </time>
                                     </li>
-                                    <?php $category = getCategory(get_the_ID())?>
+                                    <?php $category = get_the_category_(get_the_ID())?>
                                     <li>in <a href="<?php echo $category['url'];?>" title="<?php echo $category['name'];?>"><?php echo $category['name'];?></a></li>
                                 </ul>
                             </div>

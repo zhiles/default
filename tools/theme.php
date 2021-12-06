@@ -149,7 +149,6 @@ function no_category_base_refresh_rules() {
     global $wp_rewrite;
     $wp_rewrite -> flush_rules();
 }
- 
 
 add_action('init', 'no_category_base_permastruct');
 function no_category_base_permastruct() {
@@ -194,7 +193,9 @@ function no_category_base_request($query_vars) {
     }
     return $query_vars;
 }
-
+add_action('init', function () {
+    add_rewrite_rule('^(\w+)/page/([0-9]+)/?', 'index.php?pagename=404', 'top');
+});
 //禁用文章自动保存（方法一）
 // add_action( 'admin_print_scripts', create_function( '$a', "wp_deregister_script('autosave');" ) );
 //禁用文章自动保存（方法二）。注：方法一与方法二任选其一
@@ -205,7 +206,6 @@ function fanly_no_autosave(){
 //禁用文章修订版本
 add_filter( 'wp_revisions_to_keep', 'fanly_wp_revisions_to_keep', 10, 2 );
 function fanly_wp_revisions_to_keep( $num, $post ) { return 0;}
-
 
 add_action('wp_ajax_get_timeline_ajax', 'get_timeline_ajax');
 add_action('wp_ajax_nopriv_get_timeline_ajax', 'get_timeline_ajax');
@@ -270,14 +270,7 @@ function wbox_compress_html($string) {
         "/ \"/",
         "'/\*[^*]*\*/'",
     );
-    $replace = array(
-        ">\\1<",
-        " ",
-        "",
-        "\"",
-        "\"",
-        "",
-    );
+    $replace = array(">\\1<"," ","","\"","\"","",);
     return preg_replace($pattern, $replace, $string);
 }
 ?>

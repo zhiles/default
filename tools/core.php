@@ -24,18 +24,56 @@ function add_like(){
 add_action('wp_ajax_add_like', 'add_like');
 add_action('wp_ajax_nopriv_add_like', 'add_like');
 
-function list_more_post(){
-    $per_page = get_option('posts_per_page');
+function the_rand_post(){
     global $wp_posts;
-    $page = isset($_POST['page']) ? $_POST['page'] : 1;
-    $cat = isset($_POST['cat']) ? $_POST['cat'] : '0';
     $wp_posts = new WP_Query(array(
-        'posts_per_page' => $per_page,
+        'showposts' => 8,
+        'orderby'=>'rand',
+        'post_type' => 'post',
+        'post_status' => array('publish'),
+        'post__not_in' => get_option('sticky_posts'),
+        'ignore_sticky_posts' => 0
+    ));
+    if ($wp_posts->have_posts()) {
+        while ($wp_posts->have_posts()) {
+            $wp_posts->the_post();
+            get_template_part('component/list-rand');
+        }
+        wp_reset_postdata();
+    }
+}
+
+function the_list_sticky_post(){
+    global $wp_posts;
+    $sticky = get_option('sticky_posts');
+    if(count($sticky)<4)return;
+    $wp_posts = new WP_Query(array(
+        'posts_per_page' => 4,
+        'post_type' => 'post',
+        'post_status' => array('publish'),
+        'post__in'=> $sticky,
+        'ignore_sticky_posts' => 0
+    ));
+    if ($wp_posts->have_posts()) {
+        while ($wp_posts->have_posts()) {
+            $wp_posts->the_post();
+            get_template_part('component/list-sticky');
+        }
+        wp_reset_postdata();
+    }
+}
+
+function list_more_post(){
+    global $wp_posts;
+    $cat = isset($_POST['cat']) ? $_POST['cat'] : '0';
+    $page = isset($_POST['page'])?$_POST['page']:1;
+    $wp_posts = new WP_Query(array(
+        'posts_per_page' => get_option('posts_per_page'),
         'paged' => $page,
         'post_type' => 'post',
         'cat' => $cat,
         'post_status' => array('publish'),
-        'ignore_sticky_posts' => 0
+        'ignore_sticky_posts' => 1
     ));
     if ($wp_posts->have_posts()) {
         while ($wp_posts->have_posts()) {

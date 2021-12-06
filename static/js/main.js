@@ -12,16 +12,17 @@ function loadMore() {
     //设置加锁字段 防止重复点击
     let look = false;
     more.addEventListener('click', () => {
+        let cat = more.getAttribute('data');
         let value = more.getAttribute('data-value');
         let max = more.getAttribute('data-max');
-        if(value >= max)return;
+        if(parseInt(value) >= parseInt(max))return false;
         //若为true 则代表已经加锁,直接返回不往下执行
         if(look)return false;
         look = true;
         more.parentNode.before(loading());
         more.innerHTML = '加载中...';
         more.setAttribute('data-value', ++value);
-        let result = ask('/wp-admin/admin-ajax.php', { action: 'list_more_post', page: value, cat: 0 }, 'POST');
+        let result = ask('/wp-admin/admin-ajax.php', { action: 'list_more_post', page: value, cat: cat }, 'POST');
         result.then(res => {
             let docs = new DOMParser().parseFromString(res,'text/html').querySelectorAll('body>.list-item');
             document.querySelector('.item-load').remove();

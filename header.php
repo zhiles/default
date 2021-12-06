@@ -1,4 +1,3 @@
-
 <meta charset="UTF-8">
 <meta name="viewport"content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,10 +13,10 @@
         $description = str_ireplace(' [&hellip;]','…', get_the_excerpt());
     }elseif(is_category()){
         $title = single_cat_title('', false) . ' - ' . $title;
-        $description = category_description();
+        $description = strip_tags(category_description());
     }elseif(is_tag()){
         $title = single_tag_title('', false) . ' - ' . $title;
-        $description = tag_description();
+        $description = strip_tags(tag_description());
     }elseif(is_archive()){
         $title = strip_tags(get_the_archive_title()).' - ' . $title;
         $description = strip_tags(get_the_archive_title()) .',热门动漫,最新动漫,最新追番记录';
@@ -26,8 +25,6 @@
     }elseif(is_page('anime')){
         $title = '追番记录' . ' - ' . $title;
     }
-
-    
 ?>
 <title><?php echo $title?></title>
 <meta name="keywords" content="<?php echo $keywords; ?>"/>
