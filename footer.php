@@ -34,7 +34,7 @@
                         ?>
                         <div class="footer-info">
                             <div class="footer-icp">
-                                <img src="<?php introduce('icp.svg','img')?>">
+                                <i class="default-icon gov"></i>
                                 <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank"><?php echo $icp;?></a>
                             </div>
                         </div>
@@ -52,10 +52,7 @@
     <?php
         if(is_home()){
             introduce('swiper.min.js', 'js');
-        }elseif(is_single()){
-            introduce('qrcode.min.js','js');
-            introduce('share.min.js','js');
         }
         introduce('main.js','js')
     ?>
-    <script src="https://at.alicdn.com/t/font_2848676_roc7h5sug7b.js"></script>
+    <script src="https://at.alicdn.com/t/font_2848676_awg7r721yq.js"></script>

@@ -66,6 +66,7 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <?php $share = get_share_url();?>
                                     <div class="view-tools-right social-share">
                                         <div class="view-tools-item">
                                             <a title="海报分享" class="social-share-icon icon-haibao" data="<?php the_ID();?>" href="javascript:void(0)">
@@ -75,28 +76,21 @@
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a class="social-share-icon icon-wechat" href="javascript:">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xlink:href="#icon-wechat"></use>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                        <div class="view-tools-item">
-                                            <a title="QQ分享" class="social-share-icon icon-qq">
+                                            <a title="QQ分享" target="_blank" rel="nofollow" href="<?php echo $share['qq']?>" class="social-share-icon icon-qq">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-qq"></use>
                                                 </svg>
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a title="QQ空间分享" class="social-share-icon icon-qzone">
+                                            <a title="QQ空间分享" target="_blank" rel="nofollow" href="<?php echo $share['qzone']?>" class="social-share-icon icon-qzone">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-appqzone"></use>
                                                 </svg>
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a title="微博分享" class="social-share-icon icon-weibo">
+                                            <a title="微博分享" target="_blank" rel="nofollow" href="<?php echo $share['weibo']?>" class="social-share-icon icon-weibo">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-weibo"></use>
                                                 </svg>

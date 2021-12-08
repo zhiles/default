@@ -62,11 +62,10 @@ function the_list_sticky_post(){
         wp_reset_postdata();
     }
 }
-
-function list_more_post(){
+function the_list_post(){
     global $wp_posts;
-    $cat = isset($_POST['cat']) ? $_POST['cat'] : '0';
-    $page = isset($_POST['page'])?$_POST['page']:1;
+    $cat = $_POST['cat'] ??'0';
+    $page = $_POST['page']??1;
     $wp_posts = new WP_Query(array(
         'posts_per_page' => get_option('posts_per_page'),
         'paged' => $page,
@@ -82,14 +81,17 @@ function list_more_post(){
         }
         wp_reset_postdata();
     }
+}
+function get_the_list_post(){
+    the_list_post();
     exit;
 }
 
-add_action('wp_ajax_list_more_post', 'list_more_post');
-add_action('wp_ajax_nopriv_list_more_post', 'list_more_post');
+add_action('wp_ajax_get_the_list_post', 'get_the_list_post');
+add_action('wp_ajax_nopriv_get_the_list_post', 'get_the_list_post');
 
 function poster_generate(){
-    $id = isset($_GET['id']) ? $_GET['id'] : 1;
+    $id = $_GET['id'] ?? 1;
     $post = get_content($id);
     echo poster_main($post['title'],$post['text']);
     exit;
@@ -152,8 +154,8 @@ function base64_urlSafeDecode($str)
 }
 
 function get_anime(){
-    $pageSize = isset($_GET["pageSize"])?$_GET["pageSize"]:8;
-    $page = isset($_GET["page"])?$_GET["page"]:1;
+    $pageSize = $_GET["pageSize"]??8;
+    $page = $_GET["page"]??1;
     $UID = '14606184';
     $COOKIE = 'SESSDATA=db76f8fb%2C1653531358%2Ccefda%2Ab1';
     require_once(TOOLS_PATH . '/Anime.php');

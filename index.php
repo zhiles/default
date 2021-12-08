@@ -34,10 +34,11 @@
                 <?php the_list_sticky_post(); ?>
             </div>
             <?php
-                while(have_posts()){
-                    the_post();
-                    get_template_part('component/list-item');
-                }
+//                while(have_posts()){
+//                    the_post();
+//                    get_template_part('component/list-item');
+//                }
+                the_list_post();
             ?>
             <div class="list-pages">
                 <?php get_template_part('component/list-more')?>

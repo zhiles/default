@@ -22,7 +22,7 @@ function loadMore() {
         more.parentNode.before(loading());
         more.innerHTML = '加载中...';
         more.setAttribute('data-value', ++value);
-        let result = ask('/wp-admin/admin-ajax.php', { action: 'list_more_post', page: value, cat: cat }, 'POST');
+        let result = ask('/wp-admin/admin-ajax.php', { action: 'get_the_list_post', page: value, cat: cat }, 'POST');
         result.then(res => {
             let docs = new DOMParser().parseFromString(res,'text/html').querySelectorAll('body>.list-item');
             document.querySelector('.item-load').remove();

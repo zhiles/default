@@ -73,7 +73,7 @@ function get_thumbnail_url($post): string
         }
     }
     if ($thumbnail == null || $thumbnail == "") {
-        $thumbnail = "https://ohoyo-1301859796.cos.ap-beijing.myqcloud.com/2021/11/9e19c7303b0cfc8dab5a404087c7f749.jpg!thumbnail";
+        $thumbnail = THEME_IMG_PATH . "/default.png";
     }
     return $thumbnail;
 }
@@ -102,29 +102,16 @@ function get_excerpt(): string
     return "";
 }
 
-function get_share_url($type, $title, $summary)
+function get_share_url()
 {
-    global $set;
-    if ($set['seo']['description'] != null) {
-        $description = $set['seo']['description'];
-    } else {
-        $description = get_bloginfo('description');
-    }
+    global $post;
+    $title = urlencode(get_the_title($post->ID));
+    $description = get_bloginfo('description');
     $url = urlencode(get_bloginfo('url'));
-    if ($type == 'qq') {
-        return 'https://connect.qq.com/widget/shareqq/index.html?url=' . $url . '&title=' . urlencode($title) . '&source=' . urlencode(get_bloginfo('name')) . '&desc=' . urlencode($description) . '&pics=&summary=' . urlencode($summary);
-    } else if ($type == 'weibo') {
-        return 'https://service.weibo.com/share/share.php?url=' . $url . '&title=' . urlencode($summary) . '&pic=&appkey=&searchPic=true';
-    } else if ($type = 'qzone') {
-        return 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' . $url . '&title=' . urlencode($title) . '&pics=&summary=' . urlencode($summary);
-    }
-}
-
-
-function corepress_get_current_category_id()
-{
-    $current_category = single_cat_title('', false);//获得当前分类目录名称
-    return get_cat_ID($current_category);//获得当前分类目录 ID
+    $result['qq'] = 'https://connect.qq.com/widget/shareqq/index.html?url=' . $url . '&title=' . $title . '&source=' . urlencode(get_bloginfo('name')) . '&desc=' . urlencode($description) . '&pics=&summary=' . urlencode($title);
+    $result['weibo'] = 'https://service.weibo.com/share/share.php?url=' . $url . '&title=' . urlencode($title) . '&pic='.get_thumbnail_url($post).'&appkey=&searchPic=true';
+    $result['qzone'] = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' . $url . '&title=' . urlencode($title)  . '&pics='.get_thumbnail_url($post).'&summary=' . urlencode($title) .'&site='.urlencode($title);
+    return $result;
 }
 
 function views_convert($num)

@@ -13,22 +13,19 @@ class HotPostWidget extends WP_Widget{
     }
     function widget($args,$instance){
     //这是控制小工具前台显示的函数
-        $posts = new WP_Query(array('order' => 'DESC', 'orderby' => 'meta_value_num', 'meta_key'=>'_views','posts_per_page' => 5));
-        $output = "";
+        $posts = new WP_Query(array('order' => 'DESC', 'orderby' => 'meta_value_num', 'meta_key'=>'_views','posts_per_page' => 5,'ignore_sticky_posts' => 1));
+        $item = "";
         $i = 0;
         while ($posts -> have_posts()){
-            $i++;
             $posts -> the_post();
-            $title = get_the_title();
-            $url = get_the_permalink();
-            $output .= '<div class="widget-item">';
-            $output .= '<span class="widget-item-num">'.$i.'</span>';
-            $output .= '<span class="widget-item-title"><a href="'.$url.'" class="webkit-1">'.$title.'</a></span>';
-            $output .= '</div>';
+            $item .= '<div class="widget-item">';
+            $item .= '<span class="widget-item-num">'.++$i.'</span>';
+            $item .= '<span class="widget-item-title"><a href="'.get_the_permalink().'" class="webkit-1">'.get_the_title().'</a></span>';
+            $item .= '</div>';
         }
         $html = '<div class="sidebar-aside-box">';
         $html .= '<h2 class="widget-title">热门文章</h2>';
-        $html .= $output;
+        $html .= $item;
         $html .= '</div>';
         echo $html;
     }
