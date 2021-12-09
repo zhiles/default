@@ -45,6 +45,7 @@ function loadMore() {
         })
     })
 }
+
 function loading(){
     var html = document.createElement('div');
     html.classList = "list-item item-load";
@@ -220,7 +221,7 @@ function toolsDeal(fixedHeight,bodyHeight,tools,toolsHeight){
 function intoTop() {
     let submit = document.querySelector('.navbar-search');
     let toggle = document.querySelector('.navbar-toggle');
-    if(!toggle)return
+    if(!toggle)return;
     toggle.addEventListener('click',()=>openMenu(toggle));
     submit.addEventListener('click',()=>search(toggle));
     // 返回到最上面
@@ -309,7 +310,6 @@ function LazyImg() {
         })
     }
     var observer = new IntersectionObserver(callback);
-
     // 列表元素加入监听
     eles.forEach(item => {
         observer.observe(item);
