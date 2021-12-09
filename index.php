@@ -44,6 +44,7 @@
             <?php get_sidebar();?>
         </div>
     </main>
+    <?php if(false):?>
     <div class="links">
         <div class="links-body">
             <div class="links-title">
@@ -61,6 +62,7 @@
             ?>
         </div>
     </div>
+    <?php endif;?>
     <?php get_footer();?>
 </body>
 </html>
