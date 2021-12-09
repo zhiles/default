@@ -71,9 +71,9 @@ function largeSingle() {
     let toolsHeight = tools.offsetTop;
 
     window.onresize = function () {
-        let toolsWidth = tools.parentElement.offsetWidth;
-        tools.style.width = toolsWidth+"px";
-        toolsHeight = tools.offsetTop;
+        tools.style.width = tools.parentElement.offsetWidth+"px";
+        toolsHeight = tools.parentElement.offsetTop;
+        bodyHeight = document.body.clientHeight;
     }
     toolsDeal(fixedHeight,bodyHeight,tools,toolsHeight);
     addEvent(window,'scroll',function (){
@@ -85,7 +85,6 @@ function largeSingle() {
     point();
     //加载海报相关事件
     posterInit();
-
 }
 
 function postInfo(){

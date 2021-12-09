@@ -33,9 +33,7 @@
             <div class="main-topping">
                 <?php the_list_sticky_post(); ?>
             </div>
-            <?php
-                the_list_post();
-            ?>
+            <?php the_list_post();?>
             <div class="list-pages">
                 <?php get_template_part('component/list-more')?>
             </div>
