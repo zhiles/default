@@ -17,8 +17,7 @@
                                 $default = array(
                                     'depth' => 0,
                                     'container' => 'ul',
-                                    'container_class' => 'menu-footer-list',
-                                    'menu_class'=>'menu-footer-item',
+                                    'menu_class'=>'menu-footer-list',
                                     'theme_location' => 'menu_bottom',
                                     'items_wrap' => '<ul class="%2$s">%3$s</ul>'
                                 );
@@ -55,4 +54,4 @@
         }
         introduce('main.js','js')
     ?>
-    <script src="https://at.alicdn.com/t/font_2848676_awg7r721yq.js"></script>
+    <script src="https://at.alicdn.com/t/font_2848676_u1di4xam00e.js"></script>

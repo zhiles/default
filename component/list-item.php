@@ -4,7 +4,7 @@
     </a>
     <div class="list-item-body">
         <h2>
-            <a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?></a>
+            <a class="webkit-1" href="<?php the_permalink();?>" title="<?php the_title();?>"><?php the_title();?></a>
         </h2>
         <p class="list-item-content">
             <?php echo get_excerpt();?>

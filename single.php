@@ -48,8 +48,8 @@
                             <!-- 版权声明 -->
                             <div class="view-copyright">
                                 <p>版权声明</p>
-                                <p>链接：<a href="<?php the_permalink();?>" title="<?php the_title()?>"><?php the_permalink();?></a></p>
-                                <p>文章部分内容来自于互联网整理而来，版权归作者所有，未经允许请勿转载。</p>
+                                <p>链接：<a rel="nofollow" href="<?php the_permalink();?>" title="<?php the_title()?>"><?php the_permalink();?></a></p>
+                                <p>除特殊标明外，其余文章为作者原创，版权归作者所有，未经允许请勿转载。</p>
                             </div>
                             <div class="view-the-end">
                                 THE END
@@ -76,21 +76,21 @@
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a title="QQ分享" target="_blank" rel="nofollow" href="<?php echo $share['qq']?>" class="social-share-icon icon-qq">
+                                            <a title="QQ分享" target="_blank" rel="nofollow" href="<?php echo $share['qq']?>" class="social-share-icon">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-qq"></use>
                                                 </svg>
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a title="QQ空间分享" target="_blank" rel="nofollow" href="<?php echo $share['qzone']?>" class="social-share-icon icon-qzone">
+                                            <a title="QQ空间分享" target="_blank" rel="nofollow" href="<?php echo $share['qzone']?>" class="social-share-icon">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-appqzone"></use>
                                                 </svg>
                                             </a>
                                         </div>
                                         <div class="view-tools-item">
-                                            <a title="微博分享" target="_blank" rel="nofollow" href="<?php echo $share['weibo']?>" class="social-share-icon icon-weibo">
+                                            <a title="微博分享" target="_blank" rel="nofollow" href="<?php echo $share['weibo']?>" class="social-share-icon">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xlink:href="#icon-weibo"></use>
                                                 </svg>
@@ -106,8 +106,8 @@
                                 ?>
                                 <div class="view-turn-item view-turn-prev" style="background-image:url(<?php echo $prev['thumbnail']; ?>)">
                                     <div class="view-turn-main">
-                                        <div><a href="<?php echo $prev['url'];?>" title="<?php echo $prev['title'];?>"><?php echo $prev['title'];?></a></div>
-                                        <div class="view-turn-link"><a href="<?php echo $prev['url'];?>" rel="nofollow"><<上一篇</a></div>
+                                        <a href="<?php echo $prev['url'];?>" title="<?php echo $prev['title'];?>"><?php echo $prev['title'];?></a>
+                                        <a href="<?php echo $prev['url'];?>" rel="nofollow"><<上一篇</a>
                                     </div>
                                 </div>
                                 <?php
@@ -115,8 +115,8 @@
                                 ?>
                                 <div class="view-turn-item view-turn-next" style="background-image:url(<?php echo $next['thumbnail']; ?>)">
                                     <div class="view-turn-main">
-                                        <div><a href="<?php echo $next['url'];?>" title="<?php echo $next['title'];?>"><?php echo $next['title'];?></a></div>
-                                        <div class="view-turn-link"><a href="<?php echo $next['url'];?>" rel="nofollow">下一篇>></a></div>
+                                        <a href="<?php echo $next['url'];?>" title="<?php echo $next['title'];?>"><?php echo $next['title'];?></a>
+                                        <a href="<?php echo $next['url'];?>" rel="nofollow">下一篇>></a>
                                     </div>
                                 </div>
                             </div>

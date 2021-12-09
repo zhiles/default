@@ -79,6 +79,8 @@ p {
 }
 figure{
     text-align: center;
+    font-size: 12px;
+    color:#a1a5bb;
 }
 .icon {
     width: 1.2rem;
@@ -465,21 +467,19 @@ figure{
 }
 
 .list-item-body a {
-    color: #333;
+    color: #303133;
     transition: all .3s ease-out 0s;
 }
 
 .list-item-content {
     font-size: 16px;
     line-height: 1.25rem;
-    color: #797c80;
+    color: #909399;
     overflow: hidden;
 }
 
 .list-item-meta {
     display: flex;
-    /* justify-content: space-between; */
-    color: #b1b1b1;
     font-size: 14px;
     margin-top: auto;
 }
@@ -757,38 +757,37 @@ figure{
     color:var(--main)
 }
 /**友情链接**/
-
-.links {
+.links{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1;
+    width: 100%;
+    z-index: 1;
+}
+.links-body {
     position: relative;
     background: #fff;
     border-radius: .25rem;
-    margin: .75rem .75rem 0 .75rem;
+    margin: 0 .75rem 1rem .75rem;
 }
 
 .links-title {
     background: #fff;
-    padding: 1.25rem .5rem;
+    padding: .75rem .5rem;
     border-bottom: 1px solid #f5f6f7;
     white-space: nowrap;
     overflow: auto;
 }
 
 .links-title div {
-    padding-left: 1.25rem;
+    padding-left: .75rem;
     font-weight: 500;
     font-size: 18px;
 }
 
-.links-apply {
-    position: absolute;
-    right: 1.25rem;
-    top: 1.35rem;
-    color: #999!important;
-    font-size: 14px;
-}
-
 .links-list {
-    padding: 1.25rem;
+    padding: .75rem;
     margin: 0 .75rem;
     display: flex;
     flex-wrap: wrap;
@@ -857,11 +856,11 @@ figure{
     display: flex;
 }
 
-.menu-footer-item {
+.menu-footer-list li {
     margin-right: .75rem;
 }
 
-.menu-footer-item a {
+.menu-footer-list a {
     color: #b3c0ce;
 }
 
@@ -1067,6 +1066,7 @@ figure{
     color: #fff;
     background-size: cover;
     background-position: 50%;
+    min-height:5rem;
 }
 
 .view-turn-item:before {
@@ -1084,10 +1084,17 @@ figure{
     z-index: 10;
     font-size: 16px;
     position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .view-turn-main a {
     color: #fff;
+    display: block;
+}
+.view-turn-main a:not(:first-child){
+    margin-top: auto;
 }
 
 .vuew-turn-prev {
@@ -1161,8 +1168,8 @@ figure{
     box-shadow: 0 0 3px 1px rgb(0 0 0 / 10%);
     background:#fafafa;
     max-height: 38rem;
-    min-height: 10rem;
-    min-width: 10rem;
+    min-height: 20rem;
+    min-width: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1878,7 +1885,11 @@ h3.time-month {
     .list-item-thumbnail{
         width: 33%;
     }
+    .list-item-body h2{
+        font-size: 1rem;
+    }
     .list-item-content{
+        font-size:14px;
         word-break: break-all;
         text-overflow: ellipsis;
         display: -webkit-box;

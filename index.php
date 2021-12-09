@@ -34,10 +34,6 @@
                 <?php the_list_sticky_post(); ?>
             </div>
             <?php
-//                while(have_posts()){
-//                    the_post();
-//                    get_template_part('component/list-item');
-//                }
                 the_list_post();
             ?>
             <div class="list-pages">
@@ -47,25 +43,24 @@
         <div class="main-right">
             <?php get_sidebar();?>
         </div>
-        <?php
-        if(false){
-        ?>
-        <div class="links">
+    </main>
+    <div class="links">
+        <div class="links-body">
             <div class="links-title">
                 <div>友情链接</div>
-                <a href="" class="links-apply">申请友链</a>
             </div>
-            <ul class="links-list">
-                <li><a href="">IT技术社区</a></li>
-                <li><a href="">IT技术社区</a></li>
-                <li><a href="">IT技术社区</a></li>
-                <li><a href="">IT技术社区</a></li>
-            </ul>
+            <?php
+            $default = array(
+                'depth' => 0,
+                'container' => 'ul',
+                'menu_class'=>'links-list',
+                'theme_location' => 'menu_link',
+                'items_wrap' => '<ul class="%2$s">%3$s</ul>'
+            );
+            wp_nav_menu($default);
+            ?>
         </div>
-        <?php
-        }
-        ?>
-    </main>
+    </div>
     <?php get_footer();?>
 </body>
 </html>

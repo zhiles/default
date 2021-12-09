@@ -106,11 +106,12 @@ function get_share_url()
 {
     global $post;
     $title = urlencode(get_the_title($post->ID));
-    $description = get_bloginfo('description');
-    $url = urlencode(get_bloginfo('url'));
-    $result['qq'] = 'https://connect.qq.com/widget/shareqq/index.html?url=' . $url . '&title=' . $title . '&source=' . urlencode(get_bloginfo('name')) . '&desc=' . urlencode($description) . '&pics=&summary=' . urlencode($title);
-    $result['weibo'] = 'https://service.weibo.com/share/share.php?url=' . $url . '&title=' . urlencode($title) . '&pic='.get_thumbnail_url($post).'&appkey=&searchPic=true';
-    $result['qzone'] = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' . $url . '&title=' . urlencode($title)  . '&pics='.get_thumbnail_url($post).'&summary=' . urlencode($title) .'&site='.urlencode($title);
+    $description = get_excerpt();
+    $url = urlencode(get_the_permalink($post->ID));
+    $pic = get_thumbnail_url($post);
+    $result['qq'] = 'https://connect.qq.com/widget/shareqq/index.html?url=' . $url . '&title=' . $title . '&source=' . urlencode(get_bloginfo('name')) . '&desc=' . $description . '&pics='.$pic.'&summary=' . $title;
+    $result['weibo'] = 'https://service.weibo.com/share/share.php?url=' . $url . '&title=' . $title . '&pic='.$pic.'&appkey=&searchPic=true';
+    $result['qzone'] = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' . $url . '&title=' . $title  . '&desc=' .$description. '&pics='.$pic.'&summary=' . $description .'&site='.$title;
     return $result;
 }
 

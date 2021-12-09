@@ -170,4 +170,72 @@ function get_anime_ajax(){
 
 add_action('wp_ajax_get_anime_ajax', 'get_anime_ajax');
 add_action('wp_ajax_nopriv_get_anime_ajax', 'get_anime_ajax');
+
+
+add_action('wp_ajax_get_timeline_ajax', 'get_timeline_ajax');
+add_action('wp_ajax_nopriv_get_timeline_ajax', 'get_timeline_ajax');
+
+function get_timeline_ajax(){
+    echo get_timeline();
+    exit;
+}
+function get_timeline(){
+    $html = '';
+    $page = isset($_GET['page'])?$_GET['page']:1;
+    $year = isset($_GET['year'])?$_GET['year']:0;
+    $month = isset($_GET['month'])?$_GET['month']:0;
+    $args  = array(
+        'post_type'           => 'post',
+        'ignore_sticky_posts' => 1,
+        'post_status'=> 'publish',
+        'posts_per_page' => 50,
+        'paged' => $page
+    );
+    $the_query  = new WP_Query($args);
+    $posts_rebuild = array();
+    while ($the_query->have_posts()): $the_query->the_post();
+        $post_year = get_the_time('Y');
+        $post_mon  = get_the_time('m');
+        $posts_rebuild[$post_year][$post_mon][] = '<span class="time-axis"><a title="'.get_the_title().'" href="' . get_permalink() . '">' . get_the_title() . '</a></span>';
+    endwhile;
+    wp_reset_postdata();
+    $output = '';
+    foreach ($posts_rebuild as $key => $value) {
+        if($year != $key){
+            $output .= '<h3 class="time-year">' . $key . '</h3>';
+        }
+        $year = $key;
+        foreach ($value as $key_m => $value_m) {
+            if($month != $year.$key_m){
+                $output .= '<h3 class="time-month">' . $year . ' - ' . $key_m . '</h3>';
+            }
+            $month = $key_m;
+            foreach ($value_m as $key => $value_d) {
+                $output .= $value_d;
+            }
+        }
+    }
+    $html .= $output;
+//    $total = $the_query ->max_num_pages;
+//    if($total > $page){
+//        $html .= '<div data="'.($page+1).'" data-year="'.$year.'" data-month="'.$year.$month.'" class="time-next">加载更多</div>';
+//    }
+    return wbox_compress_html($html);
+}
+
+function wbox_compress_html($string) {
+    $string  = str_replace("\r\n", '', $string); //清除换行符
+    $string  = str_replace("\n", '', $string); //清除换行符
+    $string  = str_replace("\t", '', $string); //清除制表符
+    $pattern = array(
+        "/> *([^ ]*) *</", //去掉注释标记
+        "/[\s]+/",
+        "/<!--[^!]*-->/",
+        "/\" /",
+        "/ \"/",
+        "'/\*[^*]*\*/'",
+    );
+    $replace = array(">\\1<"," ","","\"","\"","",);
+    return preg_replace($pattern, $replace, $string);
+}
 ?>
