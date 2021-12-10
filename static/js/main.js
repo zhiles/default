@@ -43,7 +43,24 @@ function loadMore() {
             document.querySelector('.item-load').remove();
             more.innerHTML = '加载更多';
         })
-    })
+    });
+    addEvent(window,'scroll',scrollLoad)
+}
+
+function scrollLoad(){
+    let more = document.querySelector('.list-load-more');
+    if(more == undefined || more == null){
+        removeEventListener('scroll',scrollLoad);
+        return;
+    }
+    var scrolltop = document.documentElement.scrollTop||document.body.scrollTop;
+    /* 整个页面的正文高度 */
+    var scrollHeight = more.offsetTop;
+    /* 可见区域高度 */
+    var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+    if((scrolltop+clientHeight) >= scrollHeight){
+        more.click();
+    }
 }
 
 function loading(){
