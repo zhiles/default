@@ -1110,10 +1110,11 @@ figure{
     background: #fff;
     box-shadow: 0 0 2px 0 rgb(98 124 153 / 10%);
     border-radius: 4px;
+    margin-bottom: .75rem;
 }
 
 .view-relevant-title {
-    padding: 1.25rem;
+    padding: 1rem;
     color: #18191a;
     border-bottom: 1px solid #f5f6f7;
     font-size: 18px;
@@ -1121,7 +1122,7 @@ figure{
 }
 
 .view-relevant-ul {
-    padding: 1.25rem 2rem;
+    padding: 1rem 1.5rem;
 }
 
 .view-relevant-ul li {
@@ -1139,17 +1140,6 @@ figure{
     position: relative;
     top: -2px;
 }
-
-.view-relevant-ul li>a {
-    vertical-align: top;
-    color: #333;
-    transition: all .3s;
-}
-
-.view-relevant-ul li>a:hover {
-    color: #66b1ff;
-}
-
 
 .model{
     position: fixed;
@@ -1214,46 +1204,37 @@ figure{
     border-radius: 4px;
 }
 
-.view-reply-title {
-    padding: 1.25rem;
-    color: #18191a;
+.view-comments-title {
+    padding: 1rem;
     border-bottom: 1px solid #f5f6f7;
-    font-size: 18px;
-    font-weight: 500;
     margin-bottom: .75rem;
+    text-align: center;
 }
 
 .view-respond {
-    padding: 1.25rem;
-    padding-top: 0;
+    padding: 0 1.25rem .75rem 1.25rem;
+}
+.view-respond form{
+    background: #f7f9fa;
     position: relative;
 }
-
-.view-respond-box {
-    display: flex;
-    justify-content: space-between;
-}
-
-.view-respond-avatar {
+.view-respond-error{
+    font-size: 15px;
+    position: absolute;
+    width: 100%;
     text-align: center;
-    max-width: 100px;
-    margin-right: .75rem;
-    z-index: 10;
+    color:#ffffff;
+    background: var(--main);
+    transition: background 0.6s ease-out 0s
+}
+.view-respond-error strong{
+    font-weight: 400;
+}
+.view-respond-comment {
     display: flex;
-    flex-direction: column;
-    margin-top: .75rem;
-    padding: .75rem;
-}
-
-.view-respond-avatar img {
-    max-height: 5rem;
-    border-radius: 50%;
-}
-
-.view-respond-comment-box {
-    margin-bottom: 10px;
-    position: relative;
+    flex-direction: row;
     flex-grow: 1;
+    background: #f7f9fa;
 }
 
 .view-respond-textarea {
@@ -1263,44 +1244,26 @@ figure{
     min-height: 100px;
     padding: 6px;
     transition: .15s;
-    border-radius: 4px;
     background: #f7f9fa;
     width: 100%;
 }
-
-.view-respond-textarea:hover {
-    border: 1px solid var(--main);
+.view-respond-bottom{
+    display: flex;
+    flex-direction: row;
 }
-
-.view-respond-textarea:focus {
-    border: 1px solid var(--main);
-}
-
-.view-respond-emoji-add {
-    border-radius: 4px;
+.view-respond-emoji {
     display: inline-block;
     transition: .15s;
     vertical-align: middle;
     padding: .3em .5em;
     text-align: center;
-    line-height: 1.44;
     border: none;
     outline: none;
     cursor: pointer;
 }
-.view-respond-emoji-add .icon{
-    font-size: 16px;
-}
-.view-respond-user-info {
-    padding-left: 5rem;
-    display: flex;
-    justify-content: space-between;
-}
-
-.view-respond-user-info input {
+.view-respond-bottom input {
     height: 2rem;
     font-size: 14px;
-    border-radius: 4px;
     outline: none;
     padding-left: 6px;
     border: 1px solid #f7f9fa;
@@ -1313,7 +1276,6 @@ figure{
 .view-respond-user-email,
 .view-respond-user-link {
     flex: 20%;
-    margin: 10px;
 }
 
 .view-respond-user-author {
@@ -1324,68 +1286,47 @@ figure{
     margin-right: 0;
 }
 
-.view-respond-cookie {
-    float: left;
-    padding-left: 5rem;
-}
-
-.view-respond-cookie span {
-    font-size: 14px;
-}
-
 .view-respond-submit-box {
-    overflow: auto;
+    margin: auto 0;
 }
 
 .view-respond-submit {
-    line-height: 1;
+    border: 1px solid #f7f9fa;
+    transition: .1s;
+    margin: auto .5em;
+    padding-left: .9em;
+    padding-right: .8em;
+    width: 3em;
+    height: 3em;
     background-color: var(--main);
-    border: 1px solid #dcdfe6;
-    border-color: var(--main);
-    color: #fff;
-    outline: none;
-    transition: .1s;
-    -webkit-appearance: none;
-    padding: 12px 20px;
     font-size: 14px;
-    font-weight: 500;
-    border-radius: 4px;
-    float: right;
+    border-radius: 50%;
 }
-
+.view-respond-forbid svg,
+.view-respond-submit svg{
+    color:#fff;
+    transform: rotate(45deg);
+}
 .view-respond-forbid {
-    line-height: 1;
-    background-color: #e8eaeb;
-    border: 1px solid #dcdfe6;
-    border-color: #e8eaeb;
-    color: #fff;
-    outline: none;
+    background-color: #E4E7ED;
+    border: 1px solid #f7f9fa;
     transition: .1s;
-    -webkit-appearance: none;
-    padding: 12px 20px;
+    margin: auto .5em;
+    padding-left: .9em;
+    padding-right: .8em;
+    width: 3em;
+    height: 3em;
     font-size: 14px;
-    font-weight: 500;
-    border-radius: 4px;
-    float: right;
+    border-radius: 50%;
 }
-
-.view-comments-title {
-    margin-bottom: .75rem;
-    margin-top: .75rem;
-    padding-top: .75rem;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid #f5f6f7;
-    font-size: 18px;
-    font-weight: 500;
-}
-
 .view-comments-blank {
     padding: 20px 30px 0 30px;
     font-size: 30px;
-    text-align: center;
     color: #E4E7ED;
     user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .view-comments-blank .icon{
     width: 2.5rem;
@@ -1393,32 +1334,38 @@ figure{
     color: #E4E7ED;
 }
 .view-comments-ul {
-    padding: 0 30px;
+    padding: 1rem 1.5rem 0 1.5rem;
     list-style-position: outside;
 }
-
+.view-comments-ul li{
+    box-shadow: 0 0.5px 0 #f2f2f2;
+}
+.view-comments-ul .view-respond{
+    padding: .5rem 0;
+    position: relative;
+}
 .view-comments-item {
     display: flex;
-    box-shadow: 0 0.5px 0 #f2f2f2;
     padding: 10px 0 5px;
 }
 
 .view-comments-ul .children {
     margin-left: 3rem;
 }
+.view-comments-ul .children .children{
+    margin-left: unset;
+}
 
 .view-comments-ul .children li {
     background: #f7f7f7;
     padding: 0 1rem;
     position: relative;
-    margin: 0 10px;
 }
 
 .view-comments-ul .children li:last-child {
     margin-bottom: 10px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    padding-bottom: 10px;
 }
 
 .view-comments-ul .children li:first-child {
@@ -1429,7 +1376,7 @@ figure{
 
 .view-comments-ul .children li:first-child:before {
     position: absolute;
-    left: 15px;
+    left: 10px;
     top: -17px;
     border: 9px solid transparent;
     border-bottom: 10px solid #f8f8f8;
@@ -1441,7 +1388,6 @@ figure{
 }
 
 .view-comments-item-avatar img {
-    max-height: 5rem;
     border-radius: 50%;
 }
 
@@ -1454,25 +1400,28 @@ figure{
     color: #333;
     transition: .3s;
 }
-
+.view-comments-item-name span{
+    font-size: 12px;
+    color:#777777;
+}
 .view-comments-item-text {
     color: #777;
     margin: 6px 0;
     line-height: 1.5;
     font-size: 14px;
 }
-
+.view-comments-item-text p{
+    margin: 0;
+}
 .view-comments-item-time {
-    font-size: 14px;
+    font-size: 13px;
     color: #999;
     display: inline-block;
 }
 
-.view-comments-item-reply {
+.view-comments-item-reply,.view-comments-item-cancel {
     display: inline-block;
-    font-size: 14px;
-    color: #999;
-    transition: all .1s;
+    font-size: 13px;
     opacity: 0;
     visibility: hidden;
 }
@@ -1481,34 +1430,23 @@ figure{
     opacity: 1;
     visibility: visible;
 }
-
-.view-comments-item-reply a {
+.view-comments-ul .view-comments-item-cancel{
+    opacity: 1;
+    visibility: visible;
+    position: absolute;
+    top:-.7rem;
+    background-color: #f7f9fa;
+    padding: .1rem .3rem;
+}
+.view-comments-item-reply a,.view-comments-item-cancel a {
     color: #333;
     transition: .3s;
 }
 
-.view-comments-pages {
-    text-align: center;
+.view-comments-next {
     background: #fff;
-    padding: 20px;
+    padding: 10px;
     border-radius: 4px;
-}
-
-.view-comments-pages-item {
-    display: inline-block;
-    padding: 7px 8px;
-    margin: 2px;
-    color: #999!important;
-    line-height: 1;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    transition: all .3s ease-out 0s;
-    font-size: 14px;
-}
-
-.view-comments-pages-active {
-    background: var(--main);
-    color: #fff!important;
 }
 
 
@@ -1919,12 +1857,11 @@ h3.time-month {
     .view-content-main {
         padding: .75rem;
     }
-    .view-respond-avatar {
-        display: none;
-    }
-    .view-respond-user-info,
-    .view-respond-cookie {
+    .view-respond-user-info{
         padding-left: 0;
+    }
+    .view-comments-ul{
+        padding: 1rem 1rem 0 1rem;
     }
     .view-comments-ul .children {
         margin-left: unset;

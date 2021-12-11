@@ -238,4 +238,71 @@ function wbox_compress_html($string) {
     $replace = array(">\\1<"," ","","\"","\"","",);
     return preg_replace($pattern, $replace, $string);
 }
+
+
+
+function comments_init($comment,$args,$depth){
+    $reply = '';
+    if ($depth > 0 && $comment->comment_parent) {
+        $reply = get_comment_author($comment->comment_parent);
+        if ($reply) {
+            $reply = '<span> @ <a rel="nofollow">' . $reply . '</a></span>';
+        } else {
+            $reply = '';
+        }
+    }
+    ?>
+    <li>
+        <div class="view-comments-item">
+            <div class="view-comments-item-avatar">
+                <img src="<?php echo 'https://cravatar.cn/avatar/'.md5($comment ->comment_author_email).'?s=48&d=mm&r=g'?>" alt="<?php echo comment_author();?>">
+            </div>
+            <div class="view-comments-item-main">
+                <div class="view-comments-item-name">
+                    <a href="<?php empty($comment->comment_author_url)?'javascript:void(0)':comment_author_url();?>" rel="nofollow" target="_blank"><?php echo comment_author() . $reply; ?></a>
+                    <?php if ($comment->comment_approved == '0') : ?>
+                        <span>[你的评论审核中，审核通过方能显示...]</span><br/>
+                    <?php endif; ?>
+                </div>
+                <div class="view-comments-item-text">
+                    <?php comment_text(); ?>
+                </div>
+                <time class="view-comments-item-time"><?php comment_time('Y-m-d H:i'); ?></time>
+                <a class="view-comments-item-reply" rel="nofollow" data="<?php comment_ID()?>">回复</a>
+            </div>
+        </div>
+    </li>
+    <?php
+}
+
+function ajax_comment_err($msg) {
+    header('HTTP/1.0 500 Internal Server Error');
+    header('Content-Type: text/html;charset=UTF-8');
+    echo $msg;
+    exit;
+}
+
+function ajax_comment_post(){
+    $body = wp_unslash( $_POST );
+    $comment = wp_handle_comment_submission( $body );
+    if ( is_wp_error( $comment ) ) {
+        $data = $comment->get_error_data();
+        if ( ! empty( $data ) ) {
+            ajax_comment_err($comment->get_error_message());
+        } else {
+            exit;
+        }
+    }
+    $GLOBALS['comment'] = $comment; //根据你的评论结构自行修改，如使用默认主题则无需修改
+    comments_init($comment,array(),1);
+    exit;
+}
+add_action('wp_ajax_ajax_comment_post', 'ajax_comment_post');
+add_action('wp_ajax_nopriv_ajax_comment_post', 'ajax_comment_post');
+
+
+
+
+
+
 ?>

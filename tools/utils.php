@@ -46,8 +46,9 @@ function get_relevant($id)
     $obj = get_the_category($id);
     $objId = $obj[0]->term_id;
     $query = array(
-        'numberposts' => 6,
+        'numberposts' => 5,
         'category' => $objId,
+        'ignore_sticky_posts' => 1,
         'orderby' => 'post_date',
         'order' => 'DESC',
     );

@@ -130,6 +130,7 @@
                         <?php get_relevant(get_the_ID())?>
                     </ul>
                 </div>
+                <?php comments_template();?>
             </div>
             <div class="main-right">
                 <?php get_sidebar();?>

@@ -44,13 +44,13 @@ function loadMore() {
             more.innerHTML = '加载更多';
         })
     });
-    addEvent(window,'scroll',scrollLoad)
+    addEvent(window,'scroll',scrollMore)
 }
 
-function scrollLoad(){
+function scrollMore(){
     let more = document.querySelector('.list-load-more');
     if(more == undefined || more == null){
-        removeEventListener('scroll',scrollLoad);
+        removeEventListener('scroll',scrollMore);
         return;
     }
     var scrolltop = document.documentElement.scrollTop||document.body.scrollTop;
@@ -103,6 +103,90 @@ function largeSingle() {
     point();
     //加载海报相关事件
     posterInit();
+    //评论框初始化
+    comments();
+}
+
+function comments(){
+    let submit =  document.querySelector('.view-respond-submit');
+    let author = document.querySelector('input[name="author"]');
+    let url = document.querySelector('input[name="url"]');
+    let email = document.querySelector('input[name="email"]');
+    let cookie = window.cookie.getCookie('author');
+    if(cookie){
+        author.value = cookie['author'];
+        url.value = cookie['url'];
+        email.value = cookie['email'];
+    }
+    submit.addEventListener('click',function (){
+        let comment = document.querySelector('textarea[name="comment"]');
+        let comment_post_ID = submit.getAttribute('data');
+        let comment_parent = document.querySelector('.view-respond').getAttribute('data')??0;
+        let depth = 2;
+        let result = ask('/wp-admin/admin-ajax.php',{action:'ajax_comment_post',author:author.value,url:url.value,email:email.value,comment:comment.value,comment_post_ID,comment_parent,depth},'POST');
+        result.then(res=>{
+            comment.value = "";
+            let doc = new DOMParser().parseFromString(res,'text/html').querySelector('body>li');
+            addCommentItem(comment_parent,doc,submit);
+            window.cookie.setCookie("author",{'author':author.value,'url':url.value,'email':email.value})
+        },error=>{
+            let form = document.querySelector('.form');
+            let div = document.createElement('div');
+            div.className = "view-respond-error";
+            div.innerHTML = error;
+            form.prepend(div);
+            let time = 5;
+            timer = setInterval(function () {
+                time--;//时间值自减
+                if (time == 0) {
+                    div.remove();
+                    clearInterval(timer);
+                }
+            }, 1000);
+        });
+    });
+    let replys = document.querySelectorAll('.view-comments-item-reply');
+    replys.forEach(item=>{
+        addComment(item);
+    });
+    let cancel = document.querySelector('.view-comments-item-cancel');
+    cancel.addEventListener('click',function (){
+        resetComment();
+    })
+}
+
+function resetComment(){
+    //评论框归位置
+    let respond = document.querySelector('.view-respond');
+    let comments = document.querySelector('.view-comments-title');
+    respond.setAttribute('data',"");
+    comments.parentNode.insertBefore(respond,comments.nextSibling);
+}
+
+function addCommentItem(parent,doc,submit){
+    if (parent == 0) {
+        let ul = document.querySelector('.view-comments-ul');
+        ul.prepend(doc);
+    }else{
+        let ul = document.createElement('ul');
+        ul.className="children";
+        ul.appendChild(doc);
+        let that = submit.parentNode.parentNode.parentNode.parentNode.parentNode;
+        that.parentNode.insertBefore(ul,that.nextSibling);
+        //评论框归位置
+        resetComment();
+    }
+    addComment(doc.querySelector('.view-comments-item-reply'));
+}
+
+function addComment(obj){
+    let respond = document.querySelector('.view-respond');
+    let comments = document.querySelector('.view-comments-title');
+    obj.addEventListener('click',function (){
+        let comment_parent = obj.getAttribute('data');
+        respond.setAttribute('data',comment_parent);
+        obj.parentNode.parentNode.parentNode.appendChild(respond);
+    })
 }
 
 function postInfo(){
@@ -430,6 +514,8 @@ const ask = (function(url, data = {}, method = 'GET') {
         xhr.onreadystatechange = () => {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 resolve(xhr.responseText);
+            }else if (xhr.readyState == 4) {
+                reject(xhr.responseText);
             }
         }
         xhr.onerror = () => {

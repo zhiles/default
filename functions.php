@@ -15,6 +15,12 @@ require_once(TOOLS_PATH . '/utils.php');
 require_once(TOOLS_PATH . '/theme.php');
 require_once(TOOLS_PATH . '/core.php');
 
+// 替换 Gravatar 头像源
+function get_default_avatar($avatar) {
+    $avatar = str_replace(array('www.gravatar.com','0.gravatar.com','1.gravatar.com','2.gravatar.com','secure.gravatar.com'),'cravatar.cn',$avatar);
+    return $avatar;
+}
+add_filter('get_avatar', 'get_default_avatar');
 
 add_filter('json_enabled', '__return_false' );
 add_filter('json_jsonp_enabled', '__return_false' );
