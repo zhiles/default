@@ -49,6 +49,7 @@
 </body>
 <script>
     let next = document.querySelector('.anime-next');
+    let anime = document.querySelector('.anime');
     next.addEventListener('click',function (){
         let pageNo = next.getAttribute('data');
         let totalPages = next.getAttribute('data-max');
@@ -61,12 +62,10 @@
         let result = ask('/wp-admin/admin-ajax.php', { action: 'get_anime_ajax',page:pageNo});
         result.then(res => {
             res = JSON.parse(res);
-            let html = document.createElement('div');
-            html.className = "anime";
-            let body = "";
             for(let i=0;i<res.data.length;i++){
-                body += '<div class="item">';
-                body += '<a href="'+res.data[i].url+'" title="'+res.data[i].title+'" target="_blank" rel="nofollow">';
+                let html = document.createElement('div');
+                html.className = "item";
+                let body = '<a href="'+res.data[i].url+'" title="'+res.data[i].title+'" target="_blank" rel="nofollow">';
                 body += '<div class="anime-body">';
                 body += '<img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" data-src="'+res.data[i].image+'" alt="'+res.data[i].title+'">';
                 body += '<span class="area">'+res.data[i].areas[0].name+'</span>';
@@ -78,10 +77,9 @@
                 body += '<p>'+res.data[i].progress+'</p>';
                 body += '<p class="evaluate">'+res.data[i].evaluate+'</p>';
                 body += '</a>';
-                body += '</div>';
+                html.innerHTML = body;
+                anime.appendChild(html);
             }
-            html.innerHTML = body;
-            next.parentNode.before(html);
             LazyImg();
             if(current >= totalPages){
                 next.remove();
