@@ -22,11 +22,14 @@
                 </div>
             </div>
             <div class="view-respond-bottom">
-<!--                <button class="view-respond-emoji">-->
-<!--                    <svg class="icon" aria-hidden="true">-->
-<!--                        <use xlink:href="#icon-xiaolian"></use>-->
-<!--                    </svg>-->
-<!--                </button>-->
+                <div class="view-emoji hidden">
+                    <?php comm_smilies();?>
+                </div>
+                <button class="view-respond-emoji">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-xiaolian"></use>
+                    </svg>
+                </button>
                 <!-- 用户信息 -->
                 <div class="view-respond-user-author">
                     <input type="text" name="author" placeholder="名称(*)">

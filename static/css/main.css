@@ -1207,7 +1207,6 @@ figure{
 .view-comments-title {
     padding: 1rem;
     border-bottom: 1px solid #f5f6f7;
-    margin-bottom: .75rem;
     text-align: center;
 }
 
@@ -1259,6 +1258,19 @@ figure{
     text-align: center;
     border: none;
     outline: none;
+    cursor: pointer;
+}
+.view-emoji{
+    position: absolute;
+    width: 22rem;
+    background: #ffffff;
+    bottom:2rem;
+    padding: .75rem 0;
+}
+.view-emoji.hidden{
+    display: none;
+}
+.view-emoji a{
     cursor: pointer;
 }
 .view-respond-bottom input {
@@ -1348,6 +1360,10 @@ figure{
     display: flex;
     padding: 10px 0 5px;
 }
+.children .view-comments-item-avatar img{
+    width: 30px;
+    height: 30px;
+}
 
 .view-comments-ul .children {
     margin-left: 3rem;
@@ -1357,8 +1373,6 @@ figure{
 }
 
 .view-comments-ul .children li {
-    background: #f7f7f7;
-    padding: 0 1rem;
     position: relative;
 }
 
@@ -1374,30 +1388,17 @@ figure{
     border-top-right-radius: 4px;
 }
 
-.view-comments-ul .children li:first-child:before {
-    position: absolute;
-    left: 10px;
-    top: -17px;
-    border: 9px solid transparent;
-    border-bottom: 10px solid #f8f8f8;
-    content: "";
-}
-
-.view-comments-item-avatar {
-    flex-shrink: 0;
-}
 
 .view-comments-item-avatar img {
     border-radius: 50%;
 }
 
 .view-comments-item-main {
-    margin-left: 1.25rem;
+    margin-left: .75rem;
 }
 
 .view-comments-item-name a {
     font-size: 14px;
-    color: #333;
     transition: .3s;
 }
 .view-comments-item-name span{
@@ -1406,8 +1407,6 @@ figure{
 }
 .view-comments-item-text {
     color: #777;
-    margin: 6px 0;
-    line-height: 1.5;
     font-size: 14px;
 }
 .view-comments-item-text p{
@@ -1864,7 +1863,7 @@ h3.time-month {
         padding: 1rem 1rem 0 1rem;
     }
     .view-comments-ul .children {
-        margin-left: unset;
+        margin-left: 1rem;
     }
     .view-tools{
         padding:10px .75rem;
@@ -1893,6 +1892,9 @@ h3.time-month {
     .universal .pc{
         display: none;
     }
+    .view-emoji{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -1900,23 +1902,6 @@ h3.time-month {
         display: none;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .social-share {
     font-size: 16px;

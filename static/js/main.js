@@ -118,6 +118,7 @@ function comments(){
         url.value = cookie['url'];
         email.value = cookie['email'];
     }
+    if(!submit)return;
     submit.addEventListener('click',function (){
         let comment = document.querySelector('textarea[name="comment"]');
         let comment_post_ID = submit.getAttribute('data');
@@ -145,6 +146,14 @@ function comments(){
             }, 1000);
         });
     });
+    let emojiBtn = document.querySelector('.view-respond-emoji');
+    emojiBtn.addEventListener('click',emoji_);
+    let emojis = document.querySelectorAll('.view-emoji>a');
+    emojis.forEach(item=>{
+        item.addEventListener('click',function (){
+            emoji(item.innerHTML);
+        })
+    })
     let replys = document.querySelectorAll('.view-comments-item-reply');
     replys.forEach(item=>{
         addComment(item);
@@ -187,6 +196,22 @@ function addComment(obj){
         respond.setAttribute('data',comment_parent);
         obj.parentNode.parentNode.parentNode.appendChild(respond);
     })
+}
+
+function emoji(em){
+    let comment = document.querySelector('textarea[name="comment"]');
+    comment.value = comment.value + em;
+    emoji_();
+    comment.focus();
+}
+
+function emoji_(){
+    let emoji_ = document.querySelector('.view-emoji');
+    if (hasClass(emoji_, 'hidden')) {
+        removeClass(emoji_,'hidden');
+    }else{
+        addClass(emoji_,'hidden');
+    }
 }
 
 function postInfo(){

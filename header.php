@@ -27,8 +27,10 @@
     }
 ?>
 <title><?php echo $title?></title>
+<meta itemprop="name" content="<?php echo $title; ?>"/>
+<meta itemprop="image" content="<?php echo get_thumbnail_url($post); ?>"/>
 <meta name="keywords" content="<?php echo $keywords; ?>"/>
-<meta name="description" content="<?php echo $description; ?>"/>
+<meta name="description" itemprop="description" content="<?php echo $description; ?>"/>
 <link rel="shortcut icon" type="image/x-icon" href="<?php introduce('favicon.ico','img')?>" />
 <?php
     introduce('main.css','css');
